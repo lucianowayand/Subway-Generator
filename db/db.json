@@ -1,0 +1,194 @@
+{
+    "ingredientes":{
+        "paes":[
+            {
+                "id":1,
+                "tipo": "3 queijos"
+            },
+            {
+                "id":2,
+                "tipo": "9 grãos"
+            },
+            {
+                "id":3,
+                "tipo": "Granola salgada"
+            },
+            {
+                "id":4,
+                "tipo": "Italiano branco"
+            },
+            {
+                "id":5,
+                "tipo": "Manteiga temperada"
+            },
+            {
+                "id":6,
+                "tipo": "Parmesão e oregano"
+            }
+        ],
+        "recheios":[
+            {
+                "id":1,
+                "tipo": "Frango assado"
+            },
+            {
+                "id":2,
+                "tipo": "Carne defumada com cream cheese"
+            }, 
+            {
+                "id":3,
+                "tipo": "B.M.T italiano"
+            }, 
+            {
+                "id":4,
+                "tipo": "Carne supreme"
+            }, 
+            {
+                "id":5,
+                "tipo": "Frango"
+            }, 
+            {
+                "id":6,
+                "tipo": "Frango ranch"
+            }, 
+            {
+                "id":7,
+                "tipo": "Frango defumado com cream cheese"
+            }, 
+            {
+                "id":8,
+                "tipo": "Frango empanado"
+            }, 
+            {
+                "id":9,
+                "tipo": "Frango teriyaki"
+            }, 
+            {
+                "id":10,
+                "tipo": "Steak cheddar cremoso"
+            }, 
+            {
+                "id":11,
+                "tipo": "Steak churrasco"
+            }, 
+            {
+                "id":12,
+                "tipo": "Sub VEG"
+            }, 
+            {
+                "id":13,
+                "tipo": "Vegetariano"
+            }
+        ],
+        "queijos":[
+            {
+                "id":1,
+                "tipo": "Queijo suiço"
+            },
+            {
+                "id":2,
+                "tipo": "Queijo cheddar"
+            },
+            {
+                "id":3,
+                "tipo": "Mussarela ralada"
+            }
+        ],
+        "adicionais":[
+            {
+                "id":1,
+                "tipo": "Dobro de recheio"
+            },
+            {
+                "id":2,
+                "tipo": "Dobro de queijo"
+            },
+            {
+                "id":3,
+                "tipo": "Cheddar cremoso"
+            },
+            {
+                "id":4,
+                "tipo": "Cream cheese"
+            },
+            {
+                "id":5,
+                "tipo": "Bacon"
+            }
+        ],
+        "vegetais":[
+            {
+                "id":1,
+                "tipo": "Alface"
+            },
+            {
+                "id":2,
+                "tipo": "Cebola"
+            },
+            {
+                "id":3,
+                "tipo": "Rúcula"
+            },
+            {
+                "id":4,
+                "tipo": "Picles"
+            },
+            {
+                "id":5,
+                "tipo": "Pepino"
+            },
+            {
+                "id":6,
+                "tipo": "Pimentão"
+            },
+            {
+                "id":7,
+                "tipo": "Azeitonas"
+            },
+            {
+                "id":8,
+                "tipo": "Tomates"
+            }
+        ],
+        "molhos":[
+            {
+                "id":1,
+                "tipo": "Parmesão"
+            },
+            {
+                "id":2,
+                "tipo": "Maionese"
+            },
+            {
+                "id":3,
+                "tipo": "Maionese temperada"
+            },
+            {
+                "id":4,
+                "tipo": "Mostarda e mel"
+            },
+            {
+                "id":5,
+                "tipo": "Cebola agridoce"
+            },
+            {
+                "id":6,
+                "tipo": "Barbecue"
+            },
+            {
+                "id":7,
+                "tipo": "Chipotle"
+            },
+            {
+                "id":8,
+                "tipo": "Supreme"
+            },
+            {
+                "id":9,
+                "tipo": "Molho caipira"
+            }
+        ]
+    },
+    "historico":[]
+
+}
