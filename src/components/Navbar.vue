@@ -29,6 +29,7 @@
         border-radius: 5px;
         padding: 0.3rem;
         margin-right: 10px;
+        transition: .3s;
     }
     .button:hover{
         background-color: darkgrey;

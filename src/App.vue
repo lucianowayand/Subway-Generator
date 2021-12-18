@@ -1,5 +1,6 @@
 <template>
 <Navbar />
+<router-view/>
 </template>
 
 <script>
@@ -12,7 +13,8 @@ export default {
 </script>
 
 <style>
-  body{
+  * {
     margin:0;
+    font-family: Ubuntu;
   }
 </style>
