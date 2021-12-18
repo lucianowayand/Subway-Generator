@@ -1,48 +1,64 @@
 <template>
+
+
     <div class="header text-center mt-10 mb-10">
         <h1 class="text-4xl">Apenas um pré-visualizador de pedidos feito em Vue.js</h1>
         <p class="">Oque acha de deixar seu lanche pré-pensado antes de entrar na fila pra evitar problemas?</p>
     </div>
-    <form class="sandwich-form" id="sandwich-form">
+
+
+    <form class="sandwich-form" id="sandwich-form" @submit="postSandwich">
+
         <div class="input-container">
             <label for="pao" class="mr-2">Escolha o tipo de pão: </label>
             <select name="pao" id="pao" v-model="pao">
                 <option v-for="pao in paes" :key="pao.id" :value="pao.tipo">{{pao.tipo}}</option>
             </select>
         </div>
+
         <div class="input-container">
-            <label for="tamanho" class="mr-2">Qual tamanho do seu sanduiche?</label>
-            <div>
-                <input type="checkbox" name="15cm" id="15cm" class="ml-1 mr-1">15cm
-                <input type="checkbox" name="30cm" id="30cm" class="ml-1 mr-1">30cm
-            </div>
+            <label for="tamanho" class="mr-2">Escolha o tamanho: </label>
+            <select name="tamanho" id="tamanho" v-model="tamanho">
+                <option value="15cm">15 cm</option>
+                <option value="30cm">30 cm</option>
+            </select>
         </div>
+
         <div class="input-container">
             <label for="recheio" class="mr-2">Escolha o recheio: </label>
             <select name="recheio" id="recheio" v-model="recheio">
                 <option v-for="recheio in recheios" :key="recheio.id" :value="recheio.tipo">{{recheio.tipo}}</option>
             </select>
         </div>
+
         <div class="input-container">
             <label for="queijo" class="mr-2">Escolha o queijo: </label>
             <select name="queijo" id="queijo" v-model="queijo">
                 <option v-for="queijo in queijos" :key="queijo.id" :value="queijo.tipo">{{queijo.tipo}}</option>
             </select>
         </div>
-        <div class="checkbox-container mt-2">
-            <label for="vegetais" class="mr-2" >Vegetais:</label>
-            <div v-for="vegetal in vegetais" :key="vegetal.id">
-                <input type="checkbox" :id="vegetal.tipo" class="mr-1 ml-4"  :value="vegetal.tipo">
-                <label :for="vegetal.id" class="mr-2">{{vegetal.tipo}}</label>
+        <div id="vegetais-container" class="input-container">
+            <label id="vegetais-title" for="vegetais">Selecione os vegetais:</label>
+            <div class="checkbox-container" v-for="vegetal in vegetais_data" :key="vegetal.id">
+                <input type="checkbox" name="vegetais" v-model="vegetais" :value="vegetal.tipo">
+                <span>{{ vegetal.tipo }}</span>
             </div>
         </div>
-        <div class="checkbox-container mt-2">
-            <label for="adicionais" class="mr-2" >Adicionais:</label>
-            <div v-for="adicional in adicionais" :key="adicional.id">
-                <input type="checkbox" :id="adicional.tipo" class="mr-1 ml-4" >
-                <label :for="adicional.id" class="mr-2">{{adicional.tipo}}</label>
+        <div id="molhos-container" class="input-container">
+            <label id="molhos-title" for="molhos">Selecione os molhos:</label>
+            <div class="checkbox-container" v-for="molho in molhos_data" :key="molho.id">
+                <input type="checkbox" name="molhos" v-model="molhos" :value="molho.tipo">
+                <span>{{ molho.tipo }}</span>
             </div>
         </div>
+        <div id="adicionais-container" class="input-container">
+            <label id="adicionais-title" for="adicionais">Selecione os adicionais:</label>
+            <div class="checkbox-container" v-for="adicional in adicionais_data" :key="adicional.id">
+                <input type="checkbox" name="adicionais" v-model="adicionais" :value="adicional.tipo">
+                <span>{{ adicional.tipo }}</span>
+            </div>
+        </div>
+
         <div class="input-container text-center mt-5">
             <input type="submit" class="submit-btn" value="Salvar">
         </div>
@@ -56,15 +72,17 @@ export default {
             paes: null,
             recheios: null,
             queijos: null,
-            adicionais: null,
-            vegetais: null,
-            molhos: null,
+            vegetais_data: null,
+            vegetais: [],
+            molhos_data: null,
+            molhos: [],
+            adicionais_data: null,
+            adicionais: [],
+
             pao: null,
             tamanho: null,
             recheio: null,
             queijo: null,
-            vegetais: [],
-            adicionais: []
         }
     },
     methods:{
@@ -75,10 +93,22 @@ export default {
             this.paes = data.paes
             this.recheios = data.recheios
             this.queijos = data.queijos
-            this.vegetais = data.vegetais
-            this.adicionais = data.adicionais
-            this.molhos = data.molhos
-
+            this.vegetais_data = data.vegetais
+            this.molhos_data = data.molhos
+            this.adicionais_data = data.adicionais
+        },
+        async postSandwich(e){
+            e.preventDefault();
+            const data ={
+                pao: this.pao,
+                recheio: this.recheio,
+                queijo: this.queijo,
+                tamanho: this.tamanho,
+                vegetais: Array.from(this.vegetais),
+                molhos: Array.from(this.molhos),
+                adicionais: Array.from(this.adicionais)
+            }
+            console.log(data)
         }
     },
     mounted(){
