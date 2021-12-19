@@ -68,7 +68,7 @@ export default {
                 const res = await req.json()
             }
             
-            window.location.href = ‘https://vue-subway-generator.herokuapp.com/’;
+            window.location.href = 'https://vue-subway-generator.herokuapp.com/';
 
         }
     },
