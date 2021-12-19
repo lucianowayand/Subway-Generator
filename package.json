@@ -5,7 +5,6 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "backend": "json-server --watch db/db.json",
     "start": "node server.js"
   },
   "dependencies": {

@@ -94,7 +94,7 @@ export default {
     },
     methods:{
         async getIngredientes(){
-            const req = await fetch("http://localhost:3000/ingredientes")
+            const req = await fetch("https://subway-generator-api.herokuapp.com/ingredientes")
             const data = await req.json()
 
             this.paes = data.paes
@@ -116,7 +116,7 @@ export default {
                 adicionais: Array.from(this.adicionais)
             }
             const dataJson = JSON.stringify(data)
-            const req = await fetch("http://localhost:3000/historico", {
+            const req = await fetch("https://subway-generator-api.herokuapp.com/historico", {
                 method: "POST",
                 headers:{"Content-Type": "application/json"},
                 body: dataJson

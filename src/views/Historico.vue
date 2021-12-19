@@ -54,7 +54,7 @@ export default {
     },
     methods:{
         async getSandwiches(){
-            const req = await fetch("http://localhost:3000/historico")
+            const req = await fetch("https://subway-generator-api.herokuapp.com/historico")
 
             const data = await req.json()
 
@@ -64,7 +64,7 @@ export default {
         async deleteSandwiches(){
             const sandwich_array = this.sandwich_list
             for (let i = 0; i<sandwich_array.length; i++){
-                const req = await fetch(`http://localhost:3000/historico/${i+1}`,{method: "DELETE"})
+                const req = await fetch(`https://subway-generator-api.herokuapp.com/historico/${i+1}`,{method: "DELETE"})
                 const res = await req.json()
             }
             
