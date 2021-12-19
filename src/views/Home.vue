@@ -7,7 +7,7 @@
     </div>
 
 
-    <form class="sandwich-form" id="sandwich-form" @submit="postSandwich">
+    <form class="sandwich-form" id="sandwich-form" @submit="createSandwich">
 
         <div class="input-container">
             <label for="pao" class="mr-2">Escolha o tipo de pão: </label>
@@ -97,7 +97,7 @@ export default {
             this.molhos_data = data.molhos
             this.adicionais_data = data.adicionais
         },
-        async postSandwich(e){
+        async createSandwich(e){
             e.preventDefault();
             const data ={
                 pao: this.pao,
@@ -108,7 +108,21 @@ export default {
                 molhos: Array.from(this.molhos),
                 adicionais: Array.from(this.adicionais)
             }
-            console.log(data)
+            const dataJson = JSON.stringify(data)
+            const req = await fetch("http://localhost:3000/historico", {
+                method: "POST",
+                headers:{"Content-Type": "application/json"},
+                body: dataJson
+            })
+            const res = await req.json()
+
+            this.pao = ""
+            this.recheio = ""
+            this.queijo = ""
+            this.tamanho = ""
+            this.vegetais = ""
+            this.molhos = ""
+            this.adicionais = ""
         }
     },
     mounted(){
