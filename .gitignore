@@ -23,4 +23,4 @@ pnpm-debug.log*
 *.sw?
 
 #Changes in the db
-/db
+db/db.json

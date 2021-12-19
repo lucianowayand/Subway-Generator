@@ -1,13 +1,14 @@
 <template>
-
-
     <div class="header text-center mt-10 mb-10">
         <h1 class="text-4xl">Apenas um pré-visualizador de pedidos feito em Vue.js</h1>
         <p class="">Oque acha de deixar seu lanche pré-pensado antes de entrar na fila pra evitar problemas?</p>
     </div>
 
-
-    <form class="sandwich-form" id="sandwich-form" @submit="createSandwich">
+    <div v-if="this.alert" class="sandwich-form mb-5">
+        <alert :danger="false" :message="this.mensagem"/>
+    </div>
+    
+    <form class="sandwich-form" id="sandwich-form" @submit="postSandwich">
 
         <div class="input-container">
             <label for="pao" class="mr-2">Escolha o tipo de pão: </label>
@@ -66,7 +67,10 @@
 </template>
 
 <script>
+import Alert from '../components/Alert.vue'
+
 export default {
+  components: { Alert },
     data() {
         return{
             paes: null,
@@ -83,6 +87,9 @@ export default {
             tamanho: null,
             recheio: null,
             queijo: null,
+
+            mensagem: null,
+            alert: false
         }
     },
     methods:{
@@ -97,7 +104,7 @@ export default {
             this.molhos_data = data.molhos
             this.adicionais_data = data.adicionais
         },
-        async createSandwich(e){
+        async postSandwich(e){
             e.preventDefault();
             const data ={
                 pao: this.pao,
@@ -123,6 +130,9 @@ export default {
             this.vegetais = ""
             this.molhos = ""
             this.adicionais = ""
+
+            this.alert=true,
+            this.mensagem="Adicionado ao histórico!"
         }
     },
     mounted(){
