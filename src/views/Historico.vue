@@ -20,16 +20,16 @@
                                     <th class="p-2 whitespace-nowrap"><div class="font-semibold text-left">Adicionais</div></th>
                                 </tr>
                             </thead>
-                            <tbody class="text-sm divide-y divide-gray-100">
+                            <tbody class="text-sm divide-y divide-gray-100" v-for="sandwich in sandwich_list" :key="sandwich.id">
                                 <tr>
-                                    <td class="p-2 whitespace-nowrap"><div class="text-left">1</div></td>
-                                    <td class="p-2 whitespace-nowrap"><div class="text-left">3 queijos</div></td>
-                                    <td class="p-2 whitespace-nowrap"><div class="text-left">15 cm</div></td>
-                                    <td class="p-2 whitespace-nowrap"><div class="text-left">Steak churrasco</div></td>
-                                    <td class="p-2 whitespace-nowrap"><div class="text-left">Cheddar</div></td>
-                                    <td class="p-2 whitespace-nowrap"><div class="text-left">Alface, Cebola, Rúcula</div></td>
-                                    <td class="p-2 whitespace-nowrap"><div class="text-left">Parmesão, Maionese, Mostarda e mel</div></td>
-                                    <td class="p-2 whitespace-nowrap"><div class="text-left">Bacon, Dobro de bacon</div></td>
+                                    <td class="p-2 whitespace-nowrap"><div class="text-left">{{sandwich.id}}</div></td>
+                                    <td class="p-2 whitespace-nowrap"><div class="text-left">{{sandwich.pao}}</div></td>
+                                    <td class="p-2 whitespace-nowrap"><div class="text-left">{{sandwich.tamanho}}</div></td>
+                                    <td class="p-2 whitespace-nowrap"><div class="text-left">{{sandwich.recheio}}</div></td>
+                                    <td class="p-2 whitespace-nowrap"><div class="text-left">{{sandwich.queijo}}</div></td>
+                                    <td class="p-2 whitespace-nowrap"><div class="text-left">{{sandwich.vegetais}}</div></td>
+                                    <td class="p-2 whitespace-nowrap"><div class="text-left">{{sandwich.molhos}}</div></td>
+                                    <td class="p-2 whitespace-nowrap"><div class="text-left">{{sandwich.adicionais}}</div></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -37,6 +37,10 @@
                 </div>
             </div>
         </div>
+
+    <div class="justify-center w-full flex mt-5" @click="deleteSandwiches">
+        <p class="button mt-3 text-center w-50">Limpar histórico</p>
+    </div>
     </section>
 </template>
 
@@ -45,8 +49,49 @@ export default {
     data(){
         return{
             sandwich_list: null,
-            sandwich_id: null
+            sandwich_amount: null
         }
+    },
+    methods:{
+        async getSandwiches(){
+            const req = await fetch("http://localhost:3000/historico")
+
+            const data = await req.json()
+
+            this.sandwich_list = data
+            this.sandwich_amount = this.sandwich_list.length
+        },
+        async deleteSandwiches(){
+            const sandwich_array = this.sandwich_list
+            for (let i = 0; i<sandwich_array.length; i++){
+                const req = await fetch(`http://localhost:3000/historico/${i+1}`,{method: "DELETE"})
+                const res = await req.json()
+            }
+            
+            window.location.reload(true)
+
+        }
+    },
+
+    mounted(){
+        this.getSandwiches()
     }
 }
 </script>
+
+<style scoped>
+    .button{
+        background-color: rgb(255, 0, 0);
+        color: white;
+        border-radius: 5px;
+        padding: 0.3rem;
+        padding-right: 1rem;
+        padding-left: 1rem;
+        margin-right: 10px;
+        transition: .3s;
+        cursor:pointer;
+    }
+    .button:hover{
+        background-color: rgb(177, 0, 0);
+    }
+</style>
